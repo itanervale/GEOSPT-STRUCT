@@ -1,0 +1,33 @@
+name: Prepare release tag
+on:
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: 'Tag SemVer, por exemplo v2.0.7'
+        type: string
+        required: true
+      commit:
+        description: 'SHA completo validado pelo CI, incluindo Windows e Linux'
+        type: string
+        required: true
+permissions:
+  contents: write
+jobs:
+  prepare:
+    runs-on: ubuntu-22.04
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: node --test scripts/distribution/request-release.test.mjs
+      - id: version
+        run: node scripts/openstruct-release-request.mjs
+        env:
+          GH_TOKEN: ${{ github.token }}
+          RELEASE_INPUT_TAG: ${{ inputs.tag }}
+          RELEASE_INPUT_COMMIT: ${{ inputs.commit }}
+      - name: Publication route
+        run: echo 'Tag preparada. Após o cadastro do GeoSPT no publicador central, publique com esta tag e o mesmo SHA. Consulte docs/DESKTOP.md.'

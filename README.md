@@ -50,7 +50,7 @@ O **Corte Esquemático** (perfil geológico interpretado) é acessível a partir
 
 ## Instalação e execução
 
-**Pré-requisito:** [Node.js](https://nodejs.org) versão 18 ou superior (recomendado 20+).
+**Pré-requisito:** [Node.js](https://nodejs.org) versão 22.12 ou superior.
 
 ```bash
 # 1. Instalar as dependências (cria a pasta node_modules)
@@ -67,6 +67,25 @@ npm run preview
 ```
 
 > 💡 **Dica.** Evite espaços no caminho da pasta do projeto (ex.: use `geospt-vite` em vez de `geospt vite`). Espaços podem causar erros de resolução de módulos no Windows.
+
+### Aplicativo desktop (Windows e Linux)
+
+O GeoSPT também pode ser empacotado com **Tauri 2**, seguindo a estrutura desktop do ArmaduraStruct. A aplicação React, a engine, os coeficientes, as telas, os formatos de projeto e os relatórios permanecem os mesmos. Os comandos web acima continuam disponíveis.
+
+Além do Node, instale Rust e os [pré-requisitos nativos do Tauri](https://v2.tauri.app/start/prerequisites/) para o seu sistema operacional.
+
+```bash
+npm ci
+npm run desktop:dev
+
+# No Windows: instalador NSIS por usuário
+npm run desktop:build -- --locked --bundles nsis
+
+# No Linux: AppImage e pacote Debian
+npm run desktop:build -- --locked --bundles deb,appimage
+```
+
+Os instaladores são gerados em `src-tauri/target/release/bundle/`. O CI prepara esses arquivos como artefatos para conferência; a publicação no catálogo assinado do OpenStruct será feita pelo publicador central após o cadastro do produto. Veja [docs/DESKTOP.md](docs/DESKTOP.md) para arquitetura, validação e preparação das releases.
 
 ---
 

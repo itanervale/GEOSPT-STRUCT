@@ -1,0 +1,7 @@
+{
+  "$schema": "../gen/schemas/desktop-schema.json",
+  "identifier": "default",
+  "description": "O desktop usa somente comandos próprios; não expõe APIs genéricas de arquivos ou shell.",
+  "windows": ["main", "document-*"],
+  "permissions": []
+}

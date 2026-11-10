@@ -4,10 +4,20 @@
   "version": "2.0.7",
   "type": "module",
   "description": "GeoSPT — Análise SPT e capacidade de carga de estacas (Décourt-Quaresma + Aoki-Velloso)",
+  "engines": {
+    "node": ">=22.12.0"
+  },
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "dev:desktop": "vite --config vite.desktop.config.js",
+    "build:desktop": "vite build --config vite.desktop.config.js",
+    "desktop:dev": "tauri dev",
+    "desktop:build": "tauri build",
+    "check": "node --test scripts/desktop/*.test.mjs scripts/distribution/*.test.mjs",
+    "test:core": "node scripts/test-core.mjs",
+    "release:version": "node scripts/openstruct-version.mjs"
   },
   "dependencies": {
     "react": "^18.3.1",
@@ -15,6 +25,7 @@
     "xlsx": "https://cdn.sheetjs.com/xlsx-0.20.3/xlsx-0.20.3.tgz"
   },
   "devDependencies": {
+    "@tauri-apps/cli": "^2.12.4",
     "@vitejs/plugin-react": "^5.2.0",
     "autoprefixer": "^10.5.0",
     "postcss": "^8.5.15",
