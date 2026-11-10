@@ -1,0 +1,22 @@
+[package]
+name = "geosptstruct"
+version = "2.0.7"
+description = "GeoSPT - análise SPT e capacidade de carga de estacas"
+edition = "2021"
+
+[lib]
+name = "geosptstruct_lib"
+crate-type = ["staticlib", "cdylib", "rlib"]
+
+[build-dependencies]
+tauri-build = { version = "2", features = [] }
+
+[dependencies]
+serde_json = "1"
+tauri = { version = "2", features = [] }
+tauri-plugin-dialog = "2"
+
+[profile.release]
+codegen-units = 1
+lto = true
+strip = true

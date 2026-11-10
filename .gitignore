@@ -23,3 +23,11 @@ pnpm-debug.log*
 .env
 .env.local
 .env.*.local
+
+# desktop e publicador OpenStruct
+src-tauri/target/
+src-tauri/gen/schemas/
+.openstruct-tools/
+.openstruct-release-config.json
+.openstruct-release-plan.json
+release-output/
